@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Text;
 
 
 namespace PizzaGuy
@@ -16,10 +17,11 @@ namespace PizzaGuy
     {
 
         public Sprite(
-            Vector2 Location,
+            Vector2 location,
             Texture2D texture,
             Rectangle initialframe,
             Vector2 velocity);
 
+        public virtual void Update(GameTime Gametime);
     }
 }
