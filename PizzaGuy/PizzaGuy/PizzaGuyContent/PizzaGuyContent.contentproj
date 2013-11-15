@@ -49,8 +49,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pacman.heightmap.jpg">
-      <Name>pacman.heightmap</Name>
+    <Compile Include="Backround.jpg">
+      <Name>Background</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

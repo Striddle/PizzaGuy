@@ -11,6 +11,8 @@ using Microsoft.Xna.Framework.Media;
 
 namespace PizzaGuy
 {
+
+
     /// <summary>
     /// This is the main type for your game
     /// </summary>
@@ -52,9 +54,10 @@ namespace PizzaGuy
             PacmanSheet = Content.Load<Texture2D>("PacmanSprites");
 
             pacman = new PizzaGuy(new Vector2(300, 300), PacmanSheet, new Rectangle(114, 13, 38, 39), Vector2.Zero);
-            pacman.AddFrame(new Rectangle(18, 14, 34, 37));
+            pacman.AddFrame(new Rectangle(18, 13, 34, 37));
             pacman.AddFrame(new Rectangle(74, 13, 27, 38));
-            pacman.AddFrame(new Rectangle(18, 14, 34, 37));
+            pacman.AddFrame(new Rectangle(18, 13, 34, 37));
+
         }
 
         /// <summary>
@@ -74,38 +77,75 @@ namespace PizzaGuy
         /// 
 
 
+
+        public void UpdateDirection()
+        {
+            switch (pacman.direction)
+            {
+                case Direction.UP:
+                    pacman.Velocity = new Vector2(0, -100);
+                    pacman.Rotation = MathHelper.PiOver2;
+                    destination = pacman.Location - new Vector2(0, 32);
+                    break;
+
+                case Direction.DOWN:
+                    pacman.Velocity = new Vector2(0, 100);
+                    pacman.Rotation = -MathHelper.PiOver2;
+                    destination = pacman.Location + new Vector2(0, 32);
+                    break;
+
+                case Direction.LEFT:
+                    pacman.Velocity = new Vector2(-100, 0);
+                    pacman.Rotation = 0f;
+                    destination = pacman.Location - new Vector2(32, 0);
+                    break;
+
+                case Direction.RIGHT:
+                    pacman.Velocity = new Vector2(100, 0);
+                    pacman.Rotation = MathHelper.Pi;
+                    destination = pacman.Location + new Vector2(32, 0);
+                    break;
+            }
+        }
+
         private void HandleKeyboardInput(KeyboardState keyState)
         {
 
             if (keyState.IsKeyDown(Keys.Up))
             {
-                pacman.Velocity = new Vector2(0, -100);
-                pacman.Rotation = MathHelper.PiOver2;
-                destination = pacman.Location - new Vector2(0, 32);
-                
+                // direction
+                pacman.direction = Direction.UP;
             }
 
-            else if(keyState.IsKeyDown(Keys.Down))
+            else if (keyState.IsKeyDown(Keys.Down))
             {
-                pacman.Velocity = new Vector2(0, 100);
-                pacman.Rotation = -MathHelper.PiOver2 ;
+                pacman.direction = Direction.DOWN;
             }
 
             else if (keyState.IsKeyDown(Keys.Left))
             {
-                pacman.Velocity = new Vector2(-100, 0);
-                pacman.Rotation = 0;
+                pacman.direction = Direction.LEFT;
             }
 
             else if (keyState.IsKeyDown(Keys.Right))
             {
-                pacman.Velocity = new Vector2(100, 0);
-                pacman.Rotation = MathHelper.Pi;
+                pacman.direction = Direction.RIGHT;
             }
-            if (pacman.Location == destination)
+
+
+            UpdateDirection();
+
+            if (pacman.Velocity.X > 0 && pacman.Location.X >= destination.X ||
+                pacman.Velocity.X < 0 && pacman.Location.X <= destination.X ||
+                pacman.Velocity.Y > 0 && pacman.Location.Y >= destination.Y ||
+                pacman.Velocity.Y < 0 && pacman.Location.Y <= destination.Y)
             {
                 pacman.Velocity = new Vector2(0, 0);
+                pacman.Location = destination;
+
+
             }
+
 
             imposeMovementLimits();
         }
@@ -136,6 +176,8 @@ namespace PizzaGuy
 
 
 
+
+
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
@@ -154,7 +196,7 @@ namespace PizzaGuy
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
