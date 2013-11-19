@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using xTile;
+using xTile.Display;
+
 
 namespace PizzaGuy
 {
@@ -22,6 +25,9 @@ namespace PizzaGuy
         SpriteBatch spriteBatch;
         Texture2D PacmanSheet;
         PizzaGuy pacman;
+        Map map;
+        IDisplayDevice mapDisplayDevice;
+        xTile.Dimensions.Rectangle viewport;
 
         public Game1()
         {
@@ -38,6 +44,9 @@ namespace PizzaGuy
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            mapDisplayDevice = new XnaDisplayDevice(Content, GraphicsDevice);
+
+            viewport = new xTile.Dimensions.Rectangle(new xTile.Dimensions.Size(800, 480));
 
             base.Initialize();
         }
@@ -50,9 +59,13 @@ namespace PizzaGuy
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            map = Content.Load<Map>("Map");
+            map.LoadTileSheets(mapDisplayDevice);
+
             PacmanSheet = Content.Load<Texture2D>("PacmanSprites");
 
-            pacman = new PizzaGuy(new Vector2(300, 300), PacmanSheet, new Rectangle(114, 13, 38, 39), new Vector2(32, 0));
+            pacman = new PizzaGuy(new Vector2(300, 300), PacmanSheet, new Rectangle(114, 13, 32, 32), new Vector2(32, 0));
             pacman.AddFrame(new Rectangle(18, 13, 34, 37));
             pacman.AddFrame(new Rectangle(74, 13, 27, 38));
             pacman.AddFrame(new Rectangle(18, 13, 34, 37));
@@ -199,6 +212,7 @@ namespace PizzaGuy
         {
             GraphicsDevice.Clear(Color.Black);
 
+            map.Draw(mapDisplayDevice, viewport);
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             pacman.Draw(spriteBatch);

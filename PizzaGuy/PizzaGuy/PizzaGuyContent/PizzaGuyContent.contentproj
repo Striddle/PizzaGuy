@@ -40,6 +40,12 @@
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.VideoImporters, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
+    <Reference Include="xTile">
+      <HintPath>..\xTile.dll</HintPath>
+    </Reference>
+    <Reference Include="xTile.Pipeline">
+      <HintPath>..\xTile.Pipeline.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PacmanSprites.png">
@@ -51,6 +57,20 @@
   <ItemGroup>
     <Compile Include="Backround.jpg">
       <Name>Background</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Map.tide">
+      <Name>Map</Name>
+      <Processor>TideProcessor</Processor>
+      <Importer>TideImporter</Importer>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="breakout.png">
+      <Name>breakout</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

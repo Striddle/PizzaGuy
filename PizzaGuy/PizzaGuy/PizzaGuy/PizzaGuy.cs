@@ -20,10 +20,12 @@ namespace PizzaGuy
         RIGHT
     }
 
+
     class PizzaGuy : Sprite
     {
         public Direction direction;
-
+        public Vector2 destination;
+        public Vector2 origin;
         public PizzaGuy(
             Vector2 location,
             Texture2D texture,
@@ -31,6 +33,7 @@ namespace PizzaGuy
             Vector2 velocity)
             : base(location, texture, initialFrame, velocity)
         {
+
         }
 
 
