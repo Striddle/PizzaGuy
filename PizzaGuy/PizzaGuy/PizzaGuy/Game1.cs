@@ -65,7 +65,7 @@ namespace PizzaGuy
 
             PacmanSheet = Content.Load<Texture2D>("PacmanSprites");
 
-            pacman = new PizzaGuy(new Vector2(300, 300), PacmanSheet, new Rectangle(114, 13, 32, 32), new Vector2(32, 0));
+            pacman = new PizzaGuy(new Vector2(300, 300), PacmanSheet, new Rectangle(114, 13, 38, 39), new Vector2(32, 0));
             pacman.AddFrame(new Rectangle(18, 13, 34, 37));
             pacman.AddFrame(new Rectangle(74, 13, 27, 38));
             pacman.AddFrame(new Rectangle(18, 13, 34, 37));
