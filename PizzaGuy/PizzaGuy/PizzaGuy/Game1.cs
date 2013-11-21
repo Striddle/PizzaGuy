@@ -26,6 +26,7 @@ namespace PizzaGuy
         Texture2D PacmanSheet;
         PizzaGuy pacman;
         Map map;
+        Map dots;
         IDisplayDevice mapDisplayDevice;
         xTile.Dimensions.Rectangle viewport;
 
@@ -61,7 +62,9 @@ namespace PizzaGuy
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             map = Content.Load<Map>("Map");
+            map = Content.Load<Dots>("Dots");
             map.LoadTileSheets(mapDisplayDevice);
+            map.AddLayer(xTile.Layers.Dots layer)
 
             PacmanSheet = Content.Load<Texture2D>("PacmanSprites");
 
