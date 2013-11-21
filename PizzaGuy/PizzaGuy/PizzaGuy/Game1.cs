@@ -18,6 +18,7 @@ namespace PizzaGuy
 
     /// <summary>
     /// This is the main type for your game
+    /// thanks.
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
@@ -62,13 +63,13 @@ namespace PizzaGuy
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             map = Content.Load<Map>("Map");
-            map = Content.Load<Dots>("Dots");
+           // map = Content.Load<Map>("Dots");
             map.LoadTileSheets(mapDisplayDevice);
-            map.AddLayer(xTile.Layers.Dots layer)
+            //map.AddLayer(xTile.Layers.Layer("dots"));
 
             PacmanSheet = Content.Load<Texture2D>("PacmanSprites");
 
-            pacman = new PizzaGuy(new Vector2(300, 300), PacmanSheet, new Rectangle(114, 13, 38, 39), new Vector2(32, 0));
+            pacman = new PizzaGuy(new Vector2(340, 300), PacmanSheet, new Rectangle(114, 13, 38, 39), new Vector2(32, 0));
             pacman.AddFrame(new Rectangle(18, 13, 34, 37));
             pacman.AddFrame(new Rectangle(74, 13, 27, 38));
             pacman.AddFrame(new Rectangle(18, 13, 34, 37));
@@ -189,10 +190,6 @@ namespace PizzaGuy
 
             pacman.Location = location;
         }
-
-
-
-
 
 
         protected override void Update(GameTime gameTime)
