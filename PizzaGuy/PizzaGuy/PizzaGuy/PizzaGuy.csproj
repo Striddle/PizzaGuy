@@ -110,6 +110,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ghosts.cs" />
+    <Compile Include="MazeGuy.cs" />
+    <Compile Include="Pacman.cs" />
     <Compile Include="PizzaGuy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />

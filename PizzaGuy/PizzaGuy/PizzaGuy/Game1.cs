@@ -14,8 +14,6 @@ using xTile.Display;
 
 namespace PizzaGuy
 {
-
-
     /// <summary>
     /// This is the main type for your game
     /// thanks.
